@@ -15,3 +15,6 @@ class ProductAdapter(ProductPort):
 
     def update(self, sku: str, product: UpdatedProduct):
         return self.product_repository.update(sku=sku, product=product)
+
+    def delete(self, sku: str):
+        return self.product_repository.delete(sku=sku)

@@ -12,6 +12,6 @@ class Product(BaseModel):
 
 
 class UpdatedProduct(BaseModel):
-    name: str
-    price: Decimal = 0
-    brand: Optional[str]
+    name: Optional[str] = None
+    price: Optional[Decimal] = None
+    brand: Optional[str] = None

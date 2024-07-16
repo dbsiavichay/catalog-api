@@ -23,3 +23,9 @@ async def get_product(sku: str) -> Product:
 @router.put("/product/{sku}", response_model=Product)
 async def update_product(sku: str, product: UpdatedProduct) -> Product:
     return product_adapter.update(sku=sku, product=product)
+
+
+@router.delete("/product/{sku}")
+async def delete_product(sku: str):
+    product_adapter.delete(sku=sku)
+    return {"ok": True}

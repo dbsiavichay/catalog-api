@@ -52,7 +52,7 @@ class DynamoDBClient:
             return response
         except ClientError as e:
             print(e.response["Error"]["Message"])
-            return None
+            raise
 
 
 class ProductRepositoryImpl(ProductRepository):
@@ -67,5 +67,8 @@ class ProductRepositoryImpl(ProductRepository):
 
     def update(self, sku: str, product: Product):
         return self.ddb_client.update_item(
-            key={"sku": sku}, update_values=product.model_dump()
+            key={"sku": sku}, update_values=product.model_dump(exclude_none=True)
         )
+
+    def delete(self, sku: str):
+        self.ddb_client.delete_item(key={"sku": sku})
