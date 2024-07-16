@@ -1,13 +1,16 @@
+import logging
+
 from botocore.exceptions import ClientError
 
 from app.catalog.domain.entities import Product
 from app.catalog.domain.repositories import ProductRepository
 
+logger = logging.getLogger(__name__)
+
 
 class DynamoDBClient:
     def __init__(self, table_name, ddb_resource):
         self.table_name = table_name
-        # self.ddb = ddb_resource
         self.table = ddb_resource.Table(table_name)
 
     def put_item(self, item):
@@ -15,7 +18,7 @@ class DynamoDBClient:
             self.table.put_item(Item=item)
             return item
         except ClientError as e:
-            print(e.response["Error"]["Message"])
+            logger.exception(e.response["Error"]["Message"])
             raise
 
     def get_item(self, key):
@@ -23,7 +26,7 @@ class DynamoDBClient:
             response = self.table.get_item(Key=key)
             return response.get("Item")
         except ClientError as e:
-            print(e.response["Error"]["Message"])
+            logger.exception(e.response["Error"]["Message"])
             raise
 
     def update_item(self, key, update_values):
@@ -43,7 +46,7 @@ class DynamoDBClient:
             )
             return response.get("Attributes")
         except ClientError as e:
-            print(e.response["Error"]["Message"])
+            logger.exception(e.response["Error"]["Message"])
             raise
 
     def delete_item(self, key):
@@ -51,7 +54,7 @@ class DynamoDBClient:
             response = self.table.delete_item(Key=key)
             return response
         except ClientError as e:
-            print(e.response["Error"]["Message"])
+            logger.exception(e.response["Error"]["Message"])
             raise
 
 

@@ -1,11 +1,7 @@
-import logging
-
 from fastapi import APIRouter
 
 from app.catalog.domain.entities import Product, UpdatedProduct
 from app.dependencies import product_adapter
-
-logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
