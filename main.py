@@ -3,12 +3,14 @@ import logging
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 
+from app.catalog.infra.router import router as product_router
+
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(name)s  - %(message)s")
 
 app = FastAPI()
 
 
-# app.include_router(webhooks_router)
+app.include_router(product_router)
 
 
 @app.get("/")
