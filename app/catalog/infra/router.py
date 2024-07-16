@@ -2,7 +2,7 @@ import logging
 
 from fastapi import APIRouter
 
-from app.catalog.domain.entities import Product
+from app.catalog.domain.entities import Product, UpdatedProduct
 from app.dependencies import product_adapter
 
 logger = logging.getLogger(__name__)
@@ -15,6 +15,11 @@ async def create_product(product: Product) -> Product:
     return product_adapter.create(product)
 
 
-@router.put("/product")
-async def update_product(payload: dict = None):
-    pass
+@router.get("/product/{sku}", response_model=Product)
+async def get_product(sku: str) -> Product:
+    return product_adapter.retrieve(sku=sku)
+
+
+@router.put("/product/{sku}", response_model=Product)
+async def update_product(sku: str, product: UpdatedProduct) -> Product:
+    return product_adapter.update(sku=sku, product=product)

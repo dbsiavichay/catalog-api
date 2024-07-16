@@ -9,3 +9,9 @@ class Product(BaseModel):
     name: str
     price: Decimal = 0
     brand: Optional[str]
+
+
+class UpdatedProduct(BaseModel):
+    name: str
+    price: Decimal = 0
+    brand: Optional[str]
