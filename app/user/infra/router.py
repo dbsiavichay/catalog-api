@@ -41,6 +41,17 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
     return user
 
 
+async def get_current_admin_user(
+    current_user: Annotated[User, Depends(get_current_user)],
+):
+    if current_user.email not in config.ADMINS:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="User is not admin"
+        )
+
+    return current_user
+
+
 async def get_current_user_optional(token: Annotated[str, Depends(oauth2_scheme)]):
     if not token:
         return None
