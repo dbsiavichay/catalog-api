@@ -1,19 +1,22 @@
 from abc import ABC, abstractmethod
+from typing import Optional
 
-from .entities import Product
+from app.user.domain.entities import User
+
+from .entities import ProductCreate, ProductUpdate
 
 
 class ProductPort(ABC):
     @abstractmethod
-    def create(self, product: Product):
+    def create(self, product: ProductCreate):
         pass
 
     @abstractmethod
-    def retrieve(self, sku: str):
+    def retrieve(self, sku: str, user: Optional[User]):
         pass
 
     @abstractmethod
-    def update(self, sku: str, product: Product):
+    def update(self, sku: str, product: ProductUpdate):
         pass
 
     @abstractmethod

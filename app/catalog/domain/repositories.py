@@ -1,19 +1,23 @@
 from abc import ABC, abstractmethod
 
-from .entities import Product
+from .entities import Product, ProductCreate, ProductUpdate
 
 
 class ProductRepository(ABC):
     @abstractmethod
-    def create(self, product: Product):
+    def create(self, product: ProductCreate):
         pass
 
     @abstractmethod
-    def retrieve(self, sku: str):
+    def retrieve(self, sku: str) -> Product:
         pass
 
     @abstractmethod
-    def update(self, sku: str, product: Product):
+    def update(self, sku: str, product: ProductUpdate):
+        pass
+
+    @abstractmethod
+    def update_queried(self, sku: str, queried_number: int):
         pass
 
     @abstractmethod
