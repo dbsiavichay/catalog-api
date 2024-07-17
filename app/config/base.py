@@ -30,4 +30,4 @@ class BaseConfig:
     # Admins
     #
 
-    ADMINS = ["denis@example.com", "pedro@example.com"]
+    ADMINS = ["a@example.com", "b@example.com", "c@example.com", "d@example.com"]
