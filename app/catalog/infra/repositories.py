@@ -20,10 +20,17 @@ class ProductRepositoryImpl(ProductRepository):
 
         return None
 
-    def update(self, sku: str, product: ProductUpdate):
-        return self.ddb_client.update_item(
+    def update(self, sku: str, product: ProductUpdate) -> Product:
+        response = self.ddb_client.update_item(
             key={"sku": sku}, update_values=product.model_dump(exclude_none=True)
         )
+
+        item = response.get("Attributes")
+
+        if item:
+            return Product(**item)
+
+        return None
 
     def update_queried(self, sku: str, queried_number: int):
         return self.ddb_client.update_item(

@@ -39,7 +39,7 @@ class DynamoDBClient:
                 ExpressionAttributeNames=expression_attribute_names,
                 ReturnValues="ALL_NEW",
             )
-            return response.get("Attributes")
+            return response
         except ClientError as e:
             logger.exception(e.response["Error"]["Message"])
             raise

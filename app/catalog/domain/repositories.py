@@ -13,7 +13,7 @@ class ProductRepository(ABC):
         pass
 
     @abstractmethod
-    def update(self, sku: str, product: ProductUpdate):
+    def update(self, sku: str, product: ProductUpdate) -> Product:
         pass
 
     @abstractmethod

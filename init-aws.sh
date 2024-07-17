@@ -15,3 +15,4 @@ awslocal dynamodb create-table \
       AttributeName=email,KeyType=HASH \
    --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 \
    --region us-east-1
+awslocal ses verify-email-identity --email hello@example.com

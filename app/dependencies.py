@@ -4,6 +4,7 @@ from passlib.context import CryptContext
 from .catalog.infra.adapters import ProductAdapter
 from .catalog.infra.repositories import DynamoDBClient, ProductRepositoryImpl
 from .config import config
+from .shared.infra.adapters import SESEmailAdapter
 from .user.application.services import UserService
 from .user.application.usecases import (
     CreateAccessTokenUsecase,
@@ -23,6 +24,15 @@ ddb_resource = boto3.resource(
     aws_secret_access_key=config.AWS_SECRET_ACCESS_KEY,
     endpoint_url=config.AWS_ENDPOINT_URL,
 )
+
+ses_client = boto3.client(
+    "ses",
+    region_name=config.AWS_REGION_NAME,
+    aws_access_key_id=config.AWS_ACCESS_KEY_ID,
+    aws_secret_access_key=config.AWS_SECRET_ACCESS_KEY,
+    endpoint_url=config.AWS_ENDPOINT_URL,
+)
+
 ddb_products = DynamoDBClient(table_name="products", ddb_resource=ddb_resource)
 ddb_users = DynamoDBClient(table_name="users", ddb_resource=ddb_resource)
 
@@ -42,5 +52,6 @@ user_service = UserService(
     user_repository,
 )
 
-product_port = ProductAdapter(product_repository)
+email_port = SESEmailAdapter(ses_client)
+product_port = ProductAdapter(product_repository, email_port)
 user_port = UserAdapter(user_service)

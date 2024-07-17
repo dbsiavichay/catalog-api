@@ -25,3 +25,9 @@ class BaseConfig:
     )
     JWT_ALGORITHM = env("JWT_ALGORITHM", "HS256")
     JWT_ACCESS_TOKEN_EXPIRE_MINUTES = env.int("JWT_ACCESS_TOKEN_EXPIRE_MINUTES", 30)
+
+    #
+    # Admins
+    #
+
+    ADMINS = ["denis@example.com", "pedro@example.com"]
