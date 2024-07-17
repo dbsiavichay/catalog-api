@@ -2,7 +2,7 @@
 help:
 	@grep -E '^[A-Za-z0-9_.-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "[36m%-30s[0m %s\n", $$1, $$2}'
 
-test:  ## Run tests
+t:  ## Run tests
 	docker compose run --no-deps --rm api pytest --cov='app'
 
 lint:  ## Fix linter errors

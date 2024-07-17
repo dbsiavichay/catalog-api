@@ -23,9 +23,8 @@ class ProductAdapter(ProductPort):
         product = self.product_repository.retrieve(sku=sku)
 
         if product and not user:
-            self.product_repository.update_queried(
-                sku, product.queried_by_anonymous + 1
-            )
+            product.queried_by_anonymous += 1
+            self.product_repository.update_queried(sku, product.queried_by_anonymous)
 
         return product
 
