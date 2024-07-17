@@ -51,8 +51,19 @@ Para ejecutar el proyecto localmente:
 4.  Accede a la documentación interactiva de la API en:
     
     `http://127.0.0.1:3000/docs` 
-    
 
+### Registro de usuarios
+
+Accede a `/register` para registrar un nuevo usuario, se debe enviar un correo y contraseña.
+Para registrar un usuario administrador se debe hacer con los siguientes correos:
+
+ - a@example.com
+ - b@example.com
+ - c@example.com
+ - d@example.com
+
+De momento los correos admins se definen en la configuración del proyecto, pero fácilmente se puede escalar a la forma tradicional de roles u otro mecanismo.
+    
 ### Contribución
 
 Las contribuciones son bienvenidas. Por favor, abre un issue o un pull request en el repositorio de GitHub para discutir cualquier cambio o mejora.
