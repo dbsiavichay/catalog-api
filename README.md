@@ -63,6 +63,10 @@ Para registrar un usuario administrador se debe hacer con los siguientes correos
  - d@example.com
 
 De momento los correos admins se definen en la configuración del proyecto, pero fácilmente se puede escalar a la forma tradicional de roles u otro mecanismo.
+
+### AWS local
+
+El proyecto tiene una instancia de localstack un aws local, la documentación la podemos encontrar por acá https://docs.localstack.cloud/overview/ y para acceder al dashboard https://app.localstack.cloud/dashboard pero antes debemos registrarnos
     
 ### Contribución
 
