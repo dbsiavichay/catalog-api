@@ -3,7 +3,8 @@ FROM python:3.11-slim-buster
 WORKDIR /app
 
 RUN apt-get -y update
-RUN apt-get -y install git
+RUN apt-get -y install git build-essential cargo
+
 
 COPY requirements.txt .
 COPY requirements_dev.txt .

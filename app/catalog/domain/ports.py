@@ -15,3 +15,7 @@ class ProductPort(ABC):
     @abstractmethod
     def update(self, sku: str, product: Product):
         pass
+
+    @abstractmethod
+    def delete(self, sku: str):
+        pass
